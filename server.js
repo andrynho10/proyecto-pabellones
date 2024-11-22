@@ -8,6 +8,7 @@ const cirugiasRoutes = require('./src/routes/cirugias');
 const pabellonesRoutes = require('./src/routes/pabellones');
 const personalRoutes = require('./src/routes/personal');
 const eventosRoutes = require('./src/routes/eventos');
+const informesRoutes = require('./src/routes/informes');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use('/api/cirugias', cirugiasRoutes);
 app.use('/api/pabellones', pabellonesRoutes);
 app.use('/api/personal', personalRoutes);
 app.use('/api/eventos', eventosRoutes);
+app.use('/api/informes', informesRoutes);
 
 const PORT = process.env.PORT || 3000;
 
