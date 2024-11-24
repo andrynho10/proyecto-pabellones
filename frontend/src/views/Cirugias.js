@@ -136,6 +136,12 @@ const Cirugias = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <FormCirugia
+                open={openForm}
+                handleClose={handleCloseForm}
+                handleSubmit={handleSubmit}
+                cirugia={cirugiaEditar}
+            />
         </Box>
     );
 };
