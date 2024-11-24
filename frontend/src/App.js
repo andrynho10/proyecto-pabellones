@@ -4,6 +4,7 @@ import Login from './components/auth/Login';
 import PrivateRoute from './components/auth/PrivateRoute';
 import Layout from './components/layout/Layout';
 import Dashboard from './views/Dashboard';
+import Cirugias from './views/Cirugias';
 
 function App() {
   return (
@@ -26,6 +27,16 @@ function App() {
             <PrivateRoute>
               <Layout>
                 <Dashboard />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/cirugias"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <Cirugias />
               </Layout>
             </PrivateRoute>
           }
