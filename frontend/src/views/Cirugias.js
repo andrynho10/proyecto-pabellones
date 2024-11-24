@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import api from '../services/api';
+import FormCirugia from '../components/cirugias/FormCirugia';
 
 const Cirugias = () => {
     const [openForm, setOpenForm] = useState(false);
