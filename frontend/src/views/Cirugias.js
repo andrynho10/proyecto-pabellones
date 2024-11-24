@@ -93,7 +93,7 @@ const Cirugias = () => {
                                     }
                                 </TableCell>
                                 <TableCell>
-                                    <Button size="small" color="primary">
+                                    <Button size="small" color="primary" onClick={() => handleOpenEdit(cirugia)}>
                                         Editar
                                     </Button>
                                 </TableCell>
