@@ -51,6 +51,7 @@ const Cirugias = () => {
                 <Button
                     variant="contained"
                     startIcon={<AddIcon />}
+                    onClick={handleOpenForm}
                 >
                     Nueva Cirugía
                 </Button>
