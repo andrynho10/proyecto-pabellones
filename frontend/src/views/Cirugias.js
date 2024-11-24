@@ -16,6 +16,39 @@ import AddIcon from '@mui/icons-material/Add';
 import api from '../services/api';
 
 const Cirugias = () => {
+    const [openForm, setOpenForm] = useState(false);
+    const [cirugiaEditar, setCirugiaEditar] = useState(null);
+
+    const handleOpenForm = () => {
+        setCirugiaEditar(null);
+        setOpenForm(true);
+};
+
+    const handleOpenEdit = (cirugia) => {
+        setCirugiaEditar(cirugia);
+        setOpenForm(true);
+};
+
+    const handleCloseForm = () => {
+        setOpenForm(false);
+        setCirugiaEditar(null);
+};
+
+    const handleSubmit = async (formData) => {
+        try {
+            if (cirugiaEditar) {
+                await api.put(`/cirugias/${cirugiaEditar.id}`, formData);
+            } else {
+                await api.post('/cirugias', formData);
+            }
+            handleCloseForm();
+            // Recargar cirugías
+            const response = await api.get('/cirugias');
+            setCirugias(response.data);
+        } catch (error) {
+            console.error('Error al guardar cirugía:', error);
+        }
+};
     const [cirugias, setCirugias] = useState([]);
 
     useEffect(() => {
