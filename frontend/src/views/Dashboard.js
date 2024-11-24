@@ -14,7 +14,7 @@ import {
 
 const Dashboard = () => {
     return (
-        <Box>
+        <Box sx={{ mt: 2 }}>
             <Typography variant="h4" gutterBottom>
                 Dashboard
             </Typography>
