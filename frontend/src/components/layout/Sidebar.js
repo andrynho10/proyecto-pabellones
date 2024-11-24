@@ -30,7 +30,7 @@ const Sidebar = () => {
             text: 'Cirugías',
             icon: <EventIcon />,
             path: '/cirugias',
-            roles: ['enfermera', 'personal_salud']
+            roles: ['admin', 'enfermera', 'personal_salud']
         },
         {
             text: 'Personal',
