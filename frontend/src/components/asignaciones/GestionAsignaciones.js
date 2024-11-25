@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-    Box,
     Button,
     Dialog,
     DialogTitle,
@@ -12,7 +11,6 @@ import {
     MenuItem,
     Grid,
     Typography,
-    Chip
 } from '@mui/material';
 import api from '../../services/api';
 
