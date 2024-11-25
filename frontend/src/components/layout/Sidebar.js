@@ -42,7 +42,7 @@ const Sidebar = () => {
             text: 'Informes',
             icon: <AssessmentIcon />,
             path: '/informes',
-            roles: ['gerencia']
+            roles: ['gerencia'] 
         }
     ];
 
