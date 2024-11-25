@@ -7,8 +7,8 @@ const {
     updateEstadoPabellon
 } = require('../controllers/pabellonesController');
 
-router.get('/', auth, getPabellones);
-router.get('/:id', auth, getPabellonById);
-router.put('/:id/estado', auth, updateEstadoPabellon);
+router.get('/', auth, checkRole(['enfermera', 'personal_salud']), getPabellones);
+router.get('/:id', auth, checkRole(['enfermera', 'personal_salud']), getPabellonById);
+router.put('/:id/estado', auth, checkRole(['enfermera']), updateEstadoPabellon);
 
 module.exports = router;
