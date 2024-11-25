@@ -21,6 +21,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import api from '../services/api';
 import FormCirugia from '../components/cirugias/FormCirugia';
+import GestionAsignaciones from '../components/asignaciones/GestionAsignaciones';
 
 const Cirugias = () => {
     const [openForm, setOpenForm] = useState(false);
@@ -58,16 +59,16 @@ const Cirugias = () => {
     };
     const [cirugias, setCirugias] = useState([]);
 
+    const fetchCirugias = async () => {
+        try {
+            const response = await api.get('/cirugias');
+            setCirugias(response.data);
+        } catch (error) {
+            console.error('Error al cargar cirugías:', error);
+        }
+    };
+    
     useEffect(() => {
-        const fetchCirugias = async () => {
-            try {
-                const response = await api.get('/cirugias');
-                setCirugias(response.data);
-            } catch (error) {
-                console.error('Error al cargar cirugías:', error);
-            }
-        };
-
         fetchCirugias();
     }, []);
 
@@ -96,14 +97,22 @@ const Cirugias = () => {
     };
 
     const cirugiasFiltradas = cirugias.filter(cirugia => {
-        const coincideBusqueda = 
-            cirugia.tipo.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
-            cirugia.paciente.toLowerCase().includes(filtros.busqueda.toLowerCase());
-        const coincidenFiltros = 
-            (!filtros.estado || cirugia.estado === filtros.estado) &&
-            (!filtros.fecha || cirugia.fecha.includes(filtros.fecha));
-        return coincideBusqueda && coincidenFiltros;
+    const coincideBusqueda = 
+        cirugia.tipo.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
+        cirugia.paciente.toLowerCase().includes(filtros.busqueda.toLowerCase());
+    const coincidenFiltros = 
+        (!filtros.estado || cirugia.estado === filtros.estado) &&
+        (!filtros.fecha || cirugia.fecha.includes(filtros.fecha));
+    return coincideBusqueda && coincidenFiltros;
     });
+
+    const [openAsignacion, setOpenAsignacion] = useState(false);
+    const [cirugiaSeleccionada, setCirugiaSeleccionada] = useState(null);
+
+    const handleAsignacion = (cirugia) => {
+        setCirugiaSeleccionada(cirugia);
+        setOpenAsignacion(true);
+    };
 
     return (
         <Box>
@@ -201,6 +210,14 @@ const Cirugias = () => {
                                     }
                                 </TableCell>
                                 <TableCell>
+                                    <Button 
+                                        size="small" 
+                                        color="primary" 
+                                        onClick={() => handleAsignacion(cirugia)}
+                                        disabled={cirugia.estado !== 'pendiente'}
+                                    >
+                                        Asignar
+                                    </Button>
                                     <Button size="small" color="primary" onClick={() => handleOpenEdit(cirugia)}>
                                         Editar
                                     </Button>
@@ -215,6 +232,16 @@ const Cirugias = () => {
                 handleClose={handleCloseForm}
                 handleSubmit={handleSubmit}
                 cirugia={cirugiaEditar}
+            />
+            <GestionAsignaciones
+                open={openAsignacion}
+                handleClose={() => setOpenAsignacion(false)}
+                cirugia={cirugiaSeleccionada}
+                onAsignacionCreada={() => {
+                    // Recargar cirugías
+                    fetchCirugias();
+                    setOpenAsignacion(false);
+                }}
             />
         </Box>
     );
