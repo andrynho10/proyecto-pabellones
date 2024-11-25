@@ -105,3 +105,4 @@ const Pabellones = () => {
         </Box>
     );
 };
+export default Pabellones;
