@@ -5,6 +5,7 @@ import PrivateRoute from './components/auth/PrivateRoute';
 import Layout from './components/layout/Layout';
 import Dashboard from './views/Dashboard';
 import Cirugias from './views/Cirugias';
+import Pabellones from './views/Pabellones'
 
 function App() {
   return (
@@ -39,6 +40,16 @@ function App() {
                 <Cirugias />
               </Layout>
             </PrivateRoute>
+          }
+        />
+        <Route
+          path="/pabellones"
+          element={
+              <PrivateRoute>
+                  <Layout>
+                      <Pabellones />
+                  </Layout>
+              </PrivateRoute>
           }
         />
       </Routes>
