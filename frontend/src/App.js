@@ -6,6 +6,7 @@ import Layout from './components/layout/Layout';
 import Dashboard from './views/Dashboard';
 import Cirugias from './views/Cirugias';
 import Pabellones from './views/Pabellones'
+import Asignaciones from './views/Asignaciones';
 
 function App() {
   return (
@@ -48,6 +49,16 @@ function App() {
               <PrivateRoute>
                   <Layout>
                       <Pabellones />
+                  </Layout>
+              </PrivateRoute>
+          }
+        />
+        <Route
+          path="/asignaciones"
+          element={
+              <PrivateRoute>
+                  <Layout>
+                      <Asignaciones />
                   </Layout>
               </PrivateRoute>
           }
