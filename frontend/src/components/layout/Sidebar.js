@@ -43,6 +43,12 @@ const Sidebar = () => {
             icon: <AssessmentIcon />,
             path: '/informes',
             roles: ['gerencia'] 
+        },
+        {
+            text: 'Asignaciones',
+            icon: <EventIcon />,
+            path: '/asignaciones',
+            roles: ['admin', 'enfermera']
         }
     ];
 
